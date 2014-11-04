@@ -43,7 +43,7 @@ def handle_person(person_link, birthyear):
 def handle_year(year):
     print 'Handling year = %d' % i
     url = 'http://www.hs.fi/verokone/haku/?nimi=&ika=%d-%d&maakunta=&sukupuoli=&asema=&vuosi=2012&laaja=true' % (i, i)
-    # hakusivu antaa enintään 500 tulosta, eli suurimmissa ikäluokissa haettava erikseen esim. miehet ja naiset
+    # hakusivu antaa max. 500 tulosta, eli suurimmissa ikaluokissa haettava erikseen esim. miehet ja naiset
     html = scraperwiki.scrape(url)
     root = lxml.html.fromstring(html)
     for person_link in root.xpath('//td[@class="details-cell"]/a'):
@@ -52,5 +52,5 @@ def handle_year(year):
         
 
 # Let's start
-for i in range(0,30): # tähän ei kovin pitkää ikäväliä tai kestää ikuisuuden.
+for i in range(0,30): # tahan ei kovin isoa valia tai kestaa ikuisuuden
     handle_year(i)
